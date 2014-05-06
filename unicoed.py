@@ -3,12 +3,13 @@
 import sys
 import os
 import json
+import importlib
 
-scriptpath = os.path.realpath(__file__)
-scriptdir = os.path.dirname(scriptpath)
-translatordir = os.path.join(scriptdir, "translators")
+#scriptpath = os.path.realpath(__file__)
+#scriptdir = os.path.dirname(scriptpath)
+#translatordir = os.path.join(scriptdir, "translators")
 
-def translate(inputtext, translatorname):
+def translate_from_json(inputtext, translatorname):
     translatorjson = os.path.join(translatordir, 
         "{}.json".format(translatorname))
     fh = open(translatorjson, 'r')
@@ -24,6 +25,10 @@ def translate(inputtext, translatorname):
 
     return output
 
+def translate(inputtext, translatorname):
+    transmod = importlib.import_module("translators.{}".format(translatorname))
+    return transmod.translate(inputtext)
+
 def main(*args):
     import argparse
 
@@ -37,7 +42,8 @@ def main(*args):
     argparser.add_argument('translatorname', help=h, action='store')
 
     pargs = argparser.parse_args()
-    print(translate(pargs.inputtext, pargs.translatorname))
+    print("\n\n\n\n{}\n\n\n\n".format(
+        translate(pargs.inputtext, pargs.translatorname)))
 
 if __name__ == '__main__':
     sys.exit(main(*sys.argv))
