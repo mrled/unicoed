@@ -2,7 +2,6 @@
 
 import sys
 import os
-import argparse
 import json
 
 scriptpath = os.path.realpath(__file__)
@@ -26,6 +25,8 @@ def translate(inputtext, translatorname):
     return output
 
 def main(*args):
+    import argparse
+
     h= "Perform some stupid unicoed tricks"
     argparser = argparse.ArgumentParser(description=h)
 
