@@ -62,9 +62,9 @@
             $('body').on('click', '#zalgo_form', function(){
                 heComes();
             });
-            var basicTitle = $('h1#zalgoTitle').text()
-            var fuckedTitle = fuck(basicTitle, 'none', 'mini', 'none');
-            console.log(fuckedTitle);
+            var zalgoTitle = $('h1#zalgoTitle')
+            var fuckedTitle = fuck(zalgoTitle.text(), 'none', 'norm', 'none');
+            zalgoTitle.text(fuckedTitle);
         });
         </script>
 
