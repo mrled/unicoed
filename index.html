@@ -62,13 +62,13 @@
             $('body').on('click', '#zalgo_form', function(){
                 heComes();
             });
+            var basicTitle = $('h1#zalgoTitle').text()
+            var fuckedTitle = fuck(basicTitle, 'none', 'mini', 'none');
+            console.log(fuckedTitle);
         });
         </script>
 
-
-        <h1>Zalgo text generator</h1>
-        <span>2009 - tchouky </span>
-        <p></p>
+        <h1 id="zalgoTitle">ZALGO!</h1>
         <table id="zalgotable">
             <tr>
                 <td id="lulz_container" style="BORDER-RIGHT: black 2px solid; PADDING-RIGHT: 50px; BORDER-TOP: black 2px solid; PADDING-LEFT: 50px; PADDING-BOTTOM: 50px; BORDER-LEFT: black 2px solid; PADDING-TOP: 50px; BORDER-BOTTOM: black 2px solid" width=550>
