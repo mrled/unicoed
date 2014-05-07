@@ -54,6 +54,15 @@
                 outputContainer.appendChild(nl);
             }
         }
+        $(document).ready(function(){
+            heComes();
+            $('body').on('keyup', '#zalgo_txt', function(){
+                heComes();
+            });
+            $('body').on('click', '#zalgo_form', function(){
+                heComes();
+            });
+        });
         </script>
 
 
@@ -75,8 +84,6 @@ He who Waits Behind The Wall.
 ZALGO!</textarea>
 
                     <form id="zalgo_form" action="">
-                        <input id="zalgo_btn" onclick="heComes();" type="button" value="HE COMES"> 
-                        <br />
                         <table>
                             <tr>
                                 <td>
@@ -116,10 +123,6 @@ ZALGO!</textarea>
                             </tr>
                         </table>
                     </form>
-                    <script type="text/javascript">
-                        heComes();
-                    </script>
-            
                 </TD>
             </tr>
         </TABLE>
