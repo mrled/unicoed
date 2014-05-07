@@ -1,8 +1,9 @@
 //============================================================
-// Original ZALGO text script by tchouky
+// Original ZALGO text script by tchouky, 
+// Copied from http://www.eeemo.net/ and modified by mrled
 //============================================================
 
-var zalgomap = {
+var zalgoMap = {
     up: [
         '\u030d', '\u030e', '\u0304', '\u0305',
         '\u033f', '\u0311', '\u0306', '\u0310',
@@ -39,15 +40,11 @@ var zalgomap = {
         '\u0337', '\u0361', '\u0489'   
     ]
 };
-zalgomap.all = [].concat(zalgomap.up, zalgomap.down, zalgomap.mid);
+zalgoMap.all = [].concat(zalgoMap.up, zalgoMap.down, zalgoMap.mid);
 
-// utils funcs
-//---------------------------------------------------
-//gets an int between 0 and max
 function rand(max) {
     return Math.floor(Math.random() * max);
 }
-    //gets a random char from a zalgo char table
 function getRandomFromArray(array) {
     return array[rand(array.length)];
 }
@@ -55,58 +52,70 @@ function inArray(arr,obj) {
     return (arr.indexOf(obj) != -1);
 }
 
-var howfucked = {
-    up: {
-        none: function () { return 0; },
-        mini: function () { return rand(8); },
-        norm: function () { return rand(16) /2 +1; },
-        maxi: function () { return rand(64) /4 +3; }
-    },
-    mid: { 
-        none: function () { return 0; },
-        mini: function () { return rand(2); },
-        norm: function () { return rand(6)  /2; },
-        maxi: function () { return rand(16) /4 +1; }
-    },
-    down: { 
-        none: function () { return 0; },
-        mini: function () { return rand(8); },
-        norm: function () { return rand(16) /2 +1; },
-        maxi: function () { return rand(64) /4 +3; }
+function howFucked(direction, degree) {
+    var validDirections = ['up', 'mid', 'down'];
+    var validDegrees = ['none','mini','norm','maxi'];
+    if (!inArray(validDirections, direction)) {
+        err = 'direction was ' + direction + ' but must be one of: ' + validDirections;
+        throw new Error(err);
     }
+    if (!inArray(validDegrees, degree)) {
+        err = 'degree was ' + degree + ' but must be one of: ' + validDegrees;
+        throw new Error(err);
+    }
+
+    var fuckTable = {
+        up: {
+            none: function () { return 0; },
+            mini: function () { return rand(8); },
+            norm: function () { return rand(16) /2 +1; },
+            maxi: function () { return rand(64) /4 +3; }
+        },
+        mid: { 
+            none: function () { return 0; },
+            mini: function () { return rand(2); },
+            norm: function () { return rand(6)  /2; },
+            maxi: function () { return rand(16) /4 +1; }
+        },
+        down: { 
+            none: function () { return 0; },
+            mini: function () { return rand(8); },
+            norm: function () { return rand(16) /2 +1; },
+            maxi: function () { return rand(64) /4 +3; }
+        }
+    }
+
+    return fuckTable[direction][degree]();
 }
 
-function fuck(input, fuckup, fuckmid, fuckdown) {
-    if (typeof(fuckup)   ==='undefined') { fuckup   = "norm"; }
-    if (typeof(fuckmid)  ==='undefined') { fuckmid  = "norm"; }
-    if (typeof(fuckdown) ==='undefined') { fuckdown = "norm"; }
+function fuck(input, degFuckUp, degFuckMid, degFuckDown) {
+    if (typeof(degFuckUp)   ==='undefined') { degFuckUp   = "norm"; }
+    if (typeof(degFuckMid)  ==='undefined') { degFuckMid  = "norm"; }
+    if (typeof(degFuckDown) ==='undefined') { degFuckDown = "norm"; }
 
     var output = '';
 
     for (var x in input) {
-        // Skip any character that we think is already a zalgo character
-        if (inArray(zalgomap.all, input[x])) {
+        if (inArray(zalgoMap.all, input[x])) {
+            // Skip any character that we think is already a zalgo character
             continue;
         }
         thisChar = input[x];
-        //console.log(thisChar);
         output += thisChar;
 
         var y;
-        for (y=0; y < howfucked['up'][fuckup](); y++) {
-            output += getRandomFromArray(zalgomap.up);
+        for (y=0; y < howFucked('up',degFuckUp); y++) {
+            output += getRandomFromArray(zalgoMap.up);
         }
-        for (y=0; y < howfucked['mid'][fuckmid](); y++) {
-            output += getRandomFromArray(zalgomap.mid);
+        for (y=0; y < howFucked('mid',degFuckMid); y++) {
+            output += getRandomFromArray(zalgoMap.mid);
         }
-        for (y=0; y < howfucked['down'][fuckdown](); y++) {
-            output += getRandomFromArray(zalgomap.down);
+        for (y=0; y < howFucked('down',degFuckDown); y++) {
+            output += getRandomFromArray(zalgoMap.down);
         }
     }
 
     return output;
 }
-
-console.log(fuck('asdf'));
 
 // .load /Users/mrled/Documents/unicoed/zalgo.js

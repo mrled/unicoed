@@ -17,26 +17,118 @@
         <script src="js/vendor/modernizr-2.6.2.min.js"></script>
     </head>
     <body>
-        <!--[if lt IE 7]>
-            <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
-        <![endif]-->
 
-        <!-- Add your site or application content here -->
-        <p>Hello world! This is HTML5 Boilerplate.</p>
-
-        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
         <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.10.2.min.js"><\/script>')</script>
         <script src="js/plugins.js"></script>
         <script src="js/main.js"></script>
 
-        <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
-        <script>
-            (function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=
-            function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;
-            e=o.createElement(i);r=o.getElementsByTagName(i)[0];
-            e.src='//www.google-analytics.com/analytics.js';
-            r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));
-            ga('create','UA-XXXXX-X');ga('send','pageview');
+
+        <script src="zalgo.js"></script>
+
+        <script type="text/javascript">
+        function heComes() {
+            var inputId = 'zalgo_txt';
+            var outputId = 'lulz_container';
+
+            var inputText = document.getElementById(inputId).value;
+            fuckedText = fuck(
+                inputText,
+                $('#zalgo_form input[name=fuckup]:checked').val(),
+                $('#zalgo_form input[name=fuckmid]:checked').val(),
+                $('#zalgo_form input[name=fuckdown]:checked').val()
+            )
+
+            //remove all children of the output container
+            var outputContainer = document.getElementById(outputId);
+            while(outputContainer.childNodes.length) {
+                outputContainer.removeChild(outputContainer.childNodes[0]);
+            }
+
+            //build blocks for each line & create a <br />
+            var lines = fuckedText.split("\n");
+            for(var i=0; i<lines.length; i++) {
+                var n = document.createElement('text');
+                n.innerHTML = lines[i];
+                outputContainer.appendChild(n);
+                var nl = document.createElement('br');
+                outputContainer.appendChild(nl);
+            }
+        }
         </script>
+
+
+        <h1>Zalgo text generator</h1>
+        <span>2009 - tchouky </span>
+        <p></p>
+        <table id="zalgotable">
+            <tr>
+                <td id="lulz_container" style="BORDER-RIGHT: black 2px solid; PADDING-RIGHT: 50px; BORDER-TOP: black 2px solid; PADDING-LEFT: 50px; PADDING-BOTTOM: 50px; BORDER-LEFT: black 2px solid; PADDING-TOP: 50px; BORDER-BOTTOM: black 2px solid" width=550>
+                    <p id="lulz"></p>
+                </td>
+                
+                <td style="BORDER-RIGHT: black 2px solid; BORDER-TOP: black 2px solid; BORDER-LEFT: black 2px solid; BORDER-BOTTOM: black 2px solid" width=450>
+                    <textarea id="zalgo_txt" style="FONT-FAMILY: Times New Roman" rows="13" cols="80">To invoke the hive-mind representing chaos.
+Invoking the feeling of chaos.
+With out order.
+The Nezperdian hive-mind of chaos. Zalgo.
+He who Waits Behind The Wall.
+ZALGO!</textarea>
+
+                    <form id="zalgo_form" action="">
+                        <input id="zalgo_btn" onclick="heComes();" type="button" value="HE COMES"> 
+                        <br />
+                        <table>
+                            <tr>
+                                <td>
+                                    <input id="zalgo_fuck_up_none" type="radio" name="fuckup" value="none" />
+                                    <label for="zalgo_fuck_up_none">no fuck up</label>
+                                    <input id="zalgo_fuck_up_mini" type="radio" name="fuckup" value="mini" />
+                                    <label for="zalgo_fuck_up_mini">mini fuck up</label>
+                                    <input id="zalgo_fuck_up_norm" type="radio" name="fuckup" value="norm" CHECKED />
+                                    <label for="zalgo_fuck_up_norm">normal fuck up</label>
+                                    <input id="zalgo_fuck_up_maxi" type="radio" name="fuckup" value="maxi" />
+                                    <label for="zalgo_fuck_up_maxi">maxi fuck up</label>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <input id="zalgo_fuck_mid_none" type="radio" name="fuckmid" value="none" CHECKED />
+                                    <label for="zalgo_fuck_mid_none">no fuck middle</label>
+                                    <input id="zalgo_fuck_mid_mini" type="radio" name="fuckmid" value="mini" />
+                                    <label for="zalgo_fuck_mid_mini">mini fuck middle</label>
+                                    <input id="zalgo_fuck_mid_norm" type="radio" name="fuckmid" value="norm" />
+                                    <label for="zalgo_fuck_mid_norm">normal fuck middle</label>
+                                    <input id="zalgo_fuck_mid_maxi" type="radio" name="fuckmid" value="maxi" />
+                                    <label for="zalgo_fuck_mid_maxi">maxi fuck middle</label>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <input id="zalgo_fuck_down_none" type="radio" name="fuckdown" value="none" />
+                                    <label for="zalgo_fuck_down_none">no fuck down</label>
+                                    <input id="zalgo_fuck_down_mini" type="radio" name="fuckdown" value="mini" />
+                                    <label for="zalgo_fuck_down_mini">mini fuck down</label>
+                                    <input id="zalgo_fuck_down_norm" type="radio" name="fuckdown" value="norm" CHECKED />
+                                    <label for="zalgo_fuck_down_norm">normal fuck down</label>
+                                    <input id="zalgo_fuck_down_maxi" type="radio" name="fuckdown" value="maxi" />
+                                    <label for="zalgo_fuck_down_maxi">maxi fuck down</label>
+                                </td>
+                            </tr>
+                        </table>
+                    </form>
+                    <script type="text/javascript">
+                        heComes();
+                    </script>
+            
+                </TD>
+            </tr>
+        </TABLE>
+
+
+
+
+
+
+
     </body>
 </html>
