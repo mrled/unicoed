@@ -9,10 +9,17 @@ body {
     margin-right: auto;
     background-color: gray;
 }
-
-#unicoedPreSpacer {
-    height: 3em;
+#unicoedTitle {
+	padding: 2em;
 }
-#unicoedPostSpacer {
-    height: 3em;
+#unicoedInput {
+	padding-left: 2em;
+}
+#unicoedOptions {
+	padding: 2em;
+}
+#unicoedOutput {
+	padding-left: 2em;
+	padding-top: 5em;
+	padding-bottom: 5em;
 }
