@@ -14,11 +14,12 @@
 
         <link rel="stylesheet" href="css/normalize.css">
         <link rel="stylesheet" href="css/main.css">
+        <link rel="stylesheet" href="css/unicoed.css">
         <script src="js/vendor/modernizr-2.6.2.min.js"></script>
     </head>
     <body>
 
-        <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.10.2.min.js"><\/script>')</script>
+        <script src="js/vendor/jquery-1.10.2.min.js"></script>
         <script src="js/plugins.js"></script>
         <script src="js/main.js"></script>
 
@@ -26,16 +27,17 @@
         <script src="zalgo.js"></script>
 
         <script type="text/javascript">
+        var titleId = 'unicoedTitle';
+        var inputId = 'unicoedInputArea';
+        var outputId = 'unicoedOutput';
+        var optionsId = 'unicoedOptions';
         function heComes() {
-            var inputId = 'zalgo_txt';
-            var outputId = 'lulz_container';
-
             var inputText = document.getElementById(inputId).value;
             fuckedText = fuck(
-                inputText,
-                $('#zalgo_form input[name=fuckup]:checked').val(),
-                $('#zalgo_form input[name=fuckmid]:checked').val(),
-                $('#zalgo_form input[name=fuckdown]:checked').val()
+                inputText
+                //$('#'+unicoedOptions+' input[name=fuckup]:checked').val(),
+                //$('#'+unicoedOptions+' input[name=fuckmid]:checked').val(),
+                //$('#'+unicoedOptions+' input[name=fuckdown]:checked').val()
             )
 
             //remove all children of the output container
@@ -56,17 +58,35 @@
         }
         $(document).ready(function(){
             heComes();
-            $('body').on('keyup', '#zalgo_txt', function(){
+            $('body').on('keyup', '#'+inputId, function(){
                 heComes();
             });
-            $('body').on('click', '#zalgo_form', function(){
+            $('body').on('click', '#'+optionsId, function(){
                 heComes();
             });
-            var zalgoTitle = $('h1#zalgoTitle')
-            var fuckedTitle = fuck(zalgoTitle.text(), 'none', 'norm', 'none');
-            zalgoTitle.text(fuckedTitle);
+            var titleElement = $('h1#'+titleId);
+            titleElement.text(
+                fuck(titleElement.text(), 'none', 'norm', 'none')
+            );
         });
         </script>
+
+
+        <div id='unicoedTranslator'>
+            <h1 id='unicoedTitle'>Unicoed</h1>
+            <div id="unicoedInput">
+                <textarea id="unicoedInputArea"></textarea>
+                Input text
+            </div>
+            <div id="unicoedOptions">
+                Options
+            </div>
+            <div id="unicoedPreSpacer"></div>
+            <div id="unicoedOutput"></div>
+            <div id="unicoedPostSpacer"></div>
+        </div>
+
+        <!--
 
         <h1 id="zalgoTitle">ZALGO!</h1>
         <table id="zalgotable">
@@ -128,7 +148,7 @@ ZALGO!</textarea>
         </TABLE>
 
 
-
+-->
 
 
 
