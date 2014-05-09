@@ -3,23 +3,45 @@ body {
     color: white;
 }
 
+.wholeTable{
+}
+.tableRow{
+    width: 80%;
+    max-width: 25em;
+    padding-left: 2em;
+    padding-right: 2em;
+}
+.tableCell{
+}
+.tableRow .tableCell {
+    border-width: 0.2em;
+    border-color: purple;
+    border-style: solid;
+}
+
 #unicoedTranslator {
-    width: 20em;
-    margin-left: auto;
-    margin-right: auto;
+    margin: 1em;
     background-color: gray;
 }
 #unicoedTitle {
 	padding: 2em;
 }
-#unicoedInput {
-	padding-left: 2em;
+#unicoedInputRow {
+
 }
-#unicoedOptions {
-	padding: 2em;
+#unicoedOptionsRow {
 }
-#unicoedOutput {
-	padding-left: 2em;
+#unicoedOutputRow {
 	padding-top: 5em;
 	padding-bottom: 5em;
+    word-wrap: break-word;
+}
+
+#unicoedInputArea {
+    width: 100%;
+}
+#unicoedOptions {
+}
+#unicoedOutput { 
+    width:100%;
 }
